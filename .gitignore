@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Test directories and files
+/coverage/**/*
+
+# ALLOW
+!/coverage/lcov.info

@@ -3,6 +3,9 @@
   justify-content: center;
   align-items: center;
   background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   & h1 {
     color: red;
