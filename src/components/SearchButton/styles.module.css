@@ -1,0 +1,29 @@
+.wrapper {
+  height: 38px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  button {
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    border-radius: 4px;
+    color: #3c4043;
+    font-size: 14px;
+    padding: 10px 16px;
+    margin: 0 4px;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #dadce0;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.hide {
+  display: none;
+}

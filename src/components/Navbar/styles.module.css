@@ -1,0 +1,45 @@
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: #6d7074;
+  height: 55px;
+  border-bottom: 1px solid #d9d9d9;
+  font-size: 13px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  svg {
+    fill: #5f6368;
+  }
+}
+
+.profileCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.headerTitle {
+  font-size: 16px;
+  color: #5f6368;
+
+  p {
+    margin: 0;
+  }
+
+  span {
+    font-weight: bold;
+  }
+}

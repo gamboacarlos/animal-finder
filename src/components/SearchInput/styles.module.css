@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchContainer {
+  position: relative;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 54%;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+
+.searchInput {
+  outline: none;
+  padding: 12px 40px;
+  border-radius: 50px;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-size: 16px;
+}
+
+.clearButton {
+  all: unset;
+  position: absolute;
+  right: 16px;
+  top: 54%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  cursor: pointer;
+}

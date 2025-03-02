@@ -9,7 +9,11 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./test/setup.ts"],
     exclude: [...configDefaults.exclude, "e2e/*"],
-    css: true,
+    css: {
+      modules: {
+        classNameStrategy: "non-scoped",
+      },
+    },
     coverage: {
       enabled: true,
       include: ["src/components/**/*.tsx", "src/pages/**/*.tsx"],
