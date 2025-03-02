@@ -1,4 +1,9 @@
 :root {
+  --primary-text: rgb(107, 114, 128);
+  --border: rgb(229, 231, 235);
+  --background: rgb(243, 244, 246);
+  --shadow: rgba(0, 0, 0, 0.051);
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;

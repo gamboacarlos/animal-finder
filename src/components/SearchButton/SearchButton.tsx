@@ -1,10 +1,6 @@
 import type { FC } from "react"
 import styles from "./styles.module.css"
-
-export type SearchButtonProps = {
-  onClick: () => void
-  searchText: string
-}
+import type { SearchButtonProps } from "./types"
 
 export const SearchButton: FC<SearchButtonProps> = ({
   onClick,

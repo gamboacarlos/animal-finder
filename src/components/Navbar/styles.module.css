@@ -3,9 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  color: #6d7074;
+  color: var(--primary-text);
   height: 55px;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--border);
   font-size: 13px;
 }
 
@@ -13,10 +13,6 @@
   display: flex;
   align-items: center;
   gap: 15px;
-
-  svg {
-    fill: #5f6368;
-  }
 }
 
 .profileCircle {
@@ -33,7 +29,6 @@
 
 .headerTitle {
   font-size: 16px;
-  color: #5f6368;
 
   p {
     margin: 0;
@@ -42,4 +37,10 @@
   span {
     font-weight: bold;
   }
+}
+
+.searchInput {
+  width: 500px;
+  display: flex;
+  gap: 10px;
 }
