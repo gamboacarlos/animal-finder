@@ -16,7 +16,11 @@ export default defineConfig({
     },
     coverage: {
       enabled: true,
-      include: ["src/components/**/*.tsx", "src/pages/**/*.tsx"],
+      include: [
+        "src/components/**/*.tsx",
+        "src/pages/**/*.tsx",
+        "src/hooks/**/*.ts",
+      ],
       exclude: ["**/*.d.ts", "**/types.ts"],
       provider: "v8",
       reporter: ["lcov", "text"],

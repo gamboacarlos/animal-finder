@@ -8,6 +8,6 @@
       "#/*": ["test/*"]
     }
   },
-  "include": ["test", "src"],
+  "include": ["src/**/*", "test/**/*"],
   "exclude": []
 }
