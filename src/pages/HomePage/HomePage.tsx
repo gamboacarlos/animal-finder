@@ -1,22 +1,13 @@
 import { SearchInput } from "@/components/SearchInput/SearchInput"
-import { useState } from "react"
+import { useSearchInput } from "@/hooks/useSearchInput"
 import { SearchButton } from "@/components/SearchButton/SearchButton"
 import { Footer } from "@/components/Footer/Footer"
 import { Navbar } from "@/components/Navbar/Navbar"
 import styles from "./styles.module.css"
 
 export const HomePage = () => {
-  const [searchText, setSearchText] = useState("")
-
-  const handleClear = () => {
-    setSearchText("")
-  }
-
-  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(evt.target.value)
-  }
-
-  const handleSearch = () => {}
+  const { searchText, handleClear, handleChange, handleSubmit } =
+    useSearchInput()
 
   return (
     <div className={styles.wrapper}>
@@ -27,8 +18,9 @@ export const HomePage = () => {
           searchText={searchText}
           handleClear={handleClear}
           handleChange={handleChange}
+          handleSubmit={handleSubmit}
         />
-        <SearchButton onClick={handleSearch} searchText={searchText} />
+        <SearchButton onClick={handleSubmit} searchText={searchText} />
       </div>
       <Footer />
     </div>

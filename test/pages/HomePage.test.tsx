@@ -1,13 +1,14 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { screen, fireEvent } from "@testing-library/react"
 import { HomePage } from "@/pages/HomePage/HomePage"
+import { renderWithCommonProviders } from "#/custom-render/renderWithCommonProviders"
 
 describe("HomePage", () => {
   it("should render without errors", () => {
-    render(<HomePage />)
+    renderWithCommonProviders(<HomePage />)
   })
 
   it("should update searchText state when handleChange is called", () => {
-    render(<HomePage />)
+    renderWithCommonProviders(<HomePage />)
 
     const inputElement = screen.getByRole("textbox") as HTMLInputElement
     fireEvent.change(inputElement, { target: { value: "test" } })
@@ -15,7 +16,7 @@ describe("HomePage", () => {
   })
 
   it("should clear searchText state when handleClear is called", () => {
-    render(<HomePage />)
+    renderWithCommonProviders(<HomePage />)
 
     const inputElement = screen.getByRole("textbox") as HTMLInputElement
     fireEvent.change(inputElement, { target: { value: "test" } })
@@ -27,7 +28,7 @@ describe("HomePage", () => {
   })
 
   it("should call handleSearch when the search button is clicked", () => {
-    render(<HomePage />)
+    renderWithCommonProviders(<HomePage />)
 
     const inputElement = screen.getByRole("textbox") as HTMLInputElement
     fireEvent.change(inputElement, { target: { value: "test" } })

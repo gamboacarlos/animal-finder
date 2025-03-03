@@ -2,16 +2,15 @@ import type { FC } from "react"
 import styles from "./styles.module.css"
 import { Search, X } from "lucide-react"
 import type { SearchInputProps } from "./types"
+import { INPUT_ICON_SIZE } from "@/constants/uiConstants"
 
-export const SearchInput: FC<SearchInputProps> = ({
-  searchText,
-  handleClear,
-  handleChange,
-}) => {
+export const SearchInput: FC<SearchInputProps> = (props) => {
+  const { searchText, handleClear, handleChange, handleSubmit } = props
+
   return (
     <div className={styles.container} data-testid="search-input">
-      <div className={styles.searchBody}>
-        <Search size={18} className={styles.searchIcon} />
+      <form className={styles.searchBody} onSubmit={handleSubmit}>
+        <Search size={INPUT_ICON_SIZE} className={styles.searchIcon} />
         <input
           type="text"
           className={styles.searchInput}
@@ -25,10 +24,10 @@ export const SearchInput: FC<SearchInputProps> = ({
             onClick={handleClear}
             data-testid="clear-button"
           >
-            <X size={18} />
+            <X size={INPUT_ICON_SIZE} />
           </button>
         )}
-      </div>
+      </form>
     </div>
   )
 }

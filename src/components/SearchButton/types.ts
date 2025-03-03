@@ -1,4 +1,4 @@
 export type SearchButtonProps = {
-  onClick: () => void
+  onClick: (evt: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   searchText: string
 }

@@ -1,0 +1,2 @@
+export const INPUT_ICON_SIZE = 18
+export const MAX_RESULT_DESCRIPTION_LENGTH = 150
