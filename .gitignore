@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 # Test directories and files
-/coverage/**/*
-
-# ALLOW
-!/coverage/lcov.info
+coverage/**/*
+cypress/screenshots/**/*
+cypress/videos/**/*

@@ -8,7 +8,7 @@ export const Card: FC<CardProps> = (props) => {
   const { selectedItem } = props
   if (!selectedItem) return null
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="card">
       <div className={styles.imageContainer}>
         <img
           src={selectedItem.image}

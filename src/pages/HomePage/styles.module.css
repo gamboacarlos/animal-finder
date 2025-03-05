@@ -22,5 +22,16 @@
   input {
     width: 582px;
     height: 46px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & > div {
+      width: 100%;
+      padding: 0 20px;
+    }
   }
 }

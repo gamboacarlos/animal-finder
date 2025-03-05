@@ -10,7 +10,11 @@ export const ResultItem: FC<ResultItemProps> = (props) => {
   return (
     <div key={item.id} className={styles.container}>
       <div className={styles.url}>{createUrlFromText(item.title)}</div>
-      <button type="button" onClick={() => setSelectedItem(item)}>
+      <button
+        type="button"
+        onClick={() => setSelectedItem(item)}
+        data-testid="result-item-title"
+      >
         <p className={styles.title}>{item.title}</p>
       </button>
       <p className={styles.description}>

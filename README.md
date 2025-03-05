@@ -9,22 +9,46 @@ A React application for searching and displaying animal information with high te
 - 🎨 Clean UI with CSS Modules
 - 🔄 Custom hooks for search and results management
 - 🧪 Comprehensive test coverage
+- 📡 End-to-end testing with Cypress
 - 📊 Type-safe development with TypeScript
+
+## Technologies
+
+- React
+- TypeScript
+- Vite (bundler)
+- Vitest (unit testing)
+- Cypress (E2E testing)
+- CSS Modules
+- pnpm (package manager)
 
 ## Installation
 
 ```bash
 # Install dependencies
-pnpm install
+npm run install
 
 # Start development server
-pnpm dev
-
-# Run tests
-pnpm test
+npm run dev
 
 # Build for production
-pnpm build
+npm run build
+```
+
+## Run Tests
+
+```bash
+# Run tests
+npm run test
+
+# Generate test coverage report
+npm run test:coverage
+
+# Start dev server and run Cypress tests
+npm run test:e2e
+
+# Start dev server and open Cypress Test Runner
+npm run test:e2e:open
 ```
 
 ## Project Structure
@@ -56,6 +80,9 @@ test/
 ├── hooks/          # Hook tests
 ├── mocks/          # Test mocks
 └── pages/          # Page tests
+
+e2e/
+└── ResultsPage/    # Cypress tests for the ResultsPage
 ```
 
 ## Test Coverage
@@ -82,12 +109,6 @@ The project maintains excellent test coverage across all components and function
 - Test Duration: 3.42s
 - All tests passing ✅
 
-## Technologies
+## Cypress E2E Testing
 
-- React
-- TypeScript
-- Vite (bundler)
-- Vitest (unit testing)
-- Cypress (E2E testing)
-- CSS Modules
-- pnpm (package manager)
+The project uses Cypress v14.1.0 for end-to-end testing to ensure the application works correctly across different devices and user interactions.

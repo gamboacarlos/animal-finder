@@ -49,7 +49,6 @@
 
 .searchInput {
   display: flex;
-  /* width: 700px; */
   gap: 10px;
 
   input {
