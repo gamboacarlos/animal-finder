@@ -5,7 +5,7 @@ export const MOCKED_ANIMALS_DATA = [
     url: "https://productive-pleasure.org",
     title: "Violet-green Swallow",
     description:
-      "Barba comburo claudeo tametsi cognatus crur celebrer victus. Depereo vociferor asporto adsum vesco. Artificiose vero studio venustas. Communis vir texo auxilium atque vis theologus hic amissio. Uxor astrum calco.",
+      "Barba comburo claudeo tametsi cognatus crur celebrer victus. Depereo vociferor asporto adsum vesco. Artificiose vero studio venustas. Communis vir texo auxilium atque vis theologus hic amissio.",
     image:
       "https://imgs.search.brave.com/XCwFuJb15Lh4uStPPkmrB0Vt0WAT3i4z2RCieFACvzA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9h/L2FkL0FtcGhpcHJp/b25fb2NlbGxhcmlz/XyhDbG93bl9hbmVt/b25lZmlzaClfYnlf/Tmlja19Ib2Jnb29k/LmpwZw",
   },

@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+
+  button {
+    all: unset;
+  }
+}
+
+.title {
+  color: #1d4ed8;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.description {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--primary-text);
+  margin-top: 4px;
+}
+
+.url {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--primary-text);
+  margin-bottom: 4px;
+}
+
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton {
+  background: #e5e7eb;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeletonUrl {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--primary-text);
+  width: 30%;
+  height: 16px;
+}
+
+.skeletonTitle {
+  width: 50%;
+  height: 22px;
+}
+
+.skeletonDescription {
+  width: 70%;
+  height: 16px;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

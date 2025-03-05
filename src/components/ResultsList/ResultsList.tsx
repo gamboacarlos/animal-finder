@@ -1,35 +1,50 @@
-import type { FC } from "react"
-import type { SearchResultsProps } from "./types"
+import { useEffect, useState, type FC } from "react"
+import type { SearchResultsItem, SearchResultsProps } from "./types"
+import { Card } from "../Card/Card"
+import { ResultItem } from "../ResultItem/ResultItem"
+import { ResultItemSkeleton } from "../ResultItem/ResultItemSkeleton"
+import { ResultsMessage } from "../ResultsMessage/ResultsMessage"
+import { Modal } from "../Modal/Modal"
 import styles from "./styles.module.css"
-import { createUrlFromText, formatTextWithEllipsis } from "@/utils/stringUtils"
-import { MAX_RESULT_DESCRIPTION_LENGTH } from "@/constants/uiConstants"
 
-export const SearchResultsList: FC<SearchResultsProps> = (props) => {
-  const { results } = props
+export const ResultsList: FC<SearchResultsProps> = (props) => {
+  const { results, isLoading, searchText } = props
+
+  const [selectedItem, setSelectedItem] = useState<SearchResultsItem | null>(
+    null,
+  )
+
+  useEffect(() => {
+    setSelectedItem(null)
+  }, [results])
+
+  if (results.length === 0 && !isLoading) {
+    return <ResultsMessage searchText={searchText} />
+  }
 
   return (
-    <div className={styles.container}>
-      {results.map((item) => (
-        <div key={item.id} className={styles.resultItem}>
-          <div className={styles.url}>{createUrlFromText(item.title)}</div>
-
-          <a
-            href={item.url}
-            className={styles.title}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {item.title}
-          </a>
-
-          <p className={styles.description}>
-            {formatTextWithEllipsis(
-              item.description,
-              MAX_RESULT_DESCRIPTION_LENGTH,
-            )}
-          </p>
-        </div>
-      ))}
+    <div className={styles.wrapper}>
+      <div className={styles.resultsBody}>
+        {isLoading
+          ? [...Array(8).keys()].map((key) => {
+              return <ResultItemSkeleton key={key} />
+            })
+          : results.map((item) => (
+              <ResultItem
+                key={item.id}
+                item={item}
+                setSelectedItem={setSelectedItem}
+              />
+            ))}
+      </div>
+      <div className={styles.card}>
+        <Card selectedItem={selectedItem} />
+      </div>
+      <div className={styles.cardModal}>
+        <Modal isOpen={!!selectedItem} onClose={() => setSelectedItem(null)}>
+          <Card selectedItem={selectedItem} />
+        </Modal>
+      </div>
     </div>
   )
 }

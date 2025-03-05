@@ -5,6 +5,7 @@ import { SearchInput } from "@/components/SearchInput/SearchInput"
 const mockSearchText = "test"
 const mockHandleClear = vi.fn()
 const mockHandleChange = vi.fn()
+const mockHandleSubmit = vi.fn()
 
 describe("SearchInput", () => {
   it("should render without errors", () => {
@@ -13,6 +14,7 @@ describe("SearchInput", () => {
         searchText={mockSearchText}
         handleClear={mockHandleClear}
         handleChange={mockHandleChange}
+        handleSubmit={mockHandleSubmit}
       />,
     )
 

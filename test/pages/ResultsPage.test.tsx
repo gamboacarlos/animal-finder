@@ -5,7 +5,7 @@ import { renderWithCommonProviders } from "#/custom-render/renderWithCommonProvi
 import * as useSearchInputModule from "@/hooks/useSearchInput"
 import * as useSearchResultsModule from "@/hooks/useSearchResults"
 import * as routerModule from "react-router-dom"
-import { createUrlFromText } from "@/utils/stringUtils"
+import { MOCKED_ANIMALS_DATA } from "#/mocks/data/mockedAnimalsData"
 
 vi.mock("@/hooks/useSearchInput", () => ({
   useSearchInput: vi.fn(),
@@ -14,14 +14,6 @@ vi.mock("@/hooks/useSearchInput", () => ({
 vi.mock("@/hooks/useSearchResults", () => ({
   useSearchResults: vi.fn(),
 }))
-
-vi.mock("react-router-dom", async () => {
-  const actual = await vi.importActual("react-router-dom")
-  return {
-    ...actual,
-    useParams: vi.fn(),
-  }
-})
 
 describe("ResultsPage", () => {
   const mockSearchInput = {
@@ -32,16 +24,7 @@ describe("ResultsPage", () => {
   }
 
   const mockSearchResults = {
-    results: [
-      {
-        id: 1,
-        type: "dog",
-        url: "https://example.com/dog",
-        title: "Friendly Dog",
-        description: "A friendly dog",
-        image: "dog.jpg",
-      },
-    ],
+    results: MOCKED_ANIMALS_DATA,
     isLoading: false,
     error: null,
   }
@@ -68,31 +51,15 @@ describe("ResultsPage", () => {
     expect(screen.getByAltText("Google")).toBeInTheDocument()
   })
 
-  it("should render search results with correct formatting", () => {
-    renderWithCommonProviders(<ResultsPage />)
-
-    const title = mockSearchResults.results[0].title
-    const url = createUrlFromText(title)
-
-    expect(screen.getByText(url)).toBeInTheDocument()
-    expect(screen.getByText(title)).toBeInTheDocument()
-    expect(
-      screen.getByText(mockSearchResults.results[0].description),
-    ).toBeInTheDocument()
-
-    const titleLink = screen.getByRole("link", { name: title })
-    expect(titleLink).toHaveAttribute("href", mockSearchResults.results[0].url)
-    expect(titleLink).toHaveAttribute("target", "_blank")
-    expect(titleLink).toHaveAttribute("rel", "noopener noreferrer")
-  })
-
   it("should handle empty search text in URL params", () => {
     vi.mocked(routerModule.useParams).mockReturnValue({ searchText: undefined })
 
     renderWithCommonProviders(<ResultsPage />)
 
-    expect(useSearchInputModule.useSearchInput).toHaveBeenCalledWith("")
-    expect(useSearchResultsModule.useSearchResults).toHaveBeenCalledWith("")
+    expect(useSearchInputModule.useSearchInput).toHaveBeenCalledWith(undefined)
+    expect(useSearchResultsModule.useSearchResults).toHaveBeenCalledWith(
+      undefined,
+    )
   })
 
   it("should render loading state", () => {

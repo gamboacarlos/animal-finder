@@ -19,7 +19,10 @@ export const useSearchInput = (initialValue = "") => {
       | React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     evt.preventDefault()
-    navigate(`/results/${searchText}`)
+    if (searchText) {
+      return navigate(`/results/${searchText}`)
+    }
+    return navigate("/results")
   }
 
   return {

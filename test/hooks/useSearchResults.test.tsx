@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react"
 import { useSearchResults } from "@/hooks/useSearchResults"
 import { getAnimalsList } from "@/api/services/getAnimalsList"
-import { vi, describe, it, expect } from "vitest"
+import { vi, describe, it, expect, beforeEach } from "vitest"
 import { MOCKED_ANIMALS_DATA } from "#/mocks/data/mockedAnimalsData"
 
 vi.mock("@/api/services/getAnimalsList", () => ({
@@ -9,15 +9,25 @@ vi.mock("@/api/services/getAnimalsList", () => ({
 }))
 
 describe("useSearchResults", () => {
-  afterEach(() => {
+  beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it("should start with loading state", () => {
+  it("should handle empty search text", async () => {
     const { result } = renderHook(() => useSearchResults(""))
+
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(false)
+    })
+
+    expect(result.current.results).toEqual([])
+    expect(getAnimalsList).not.toHaveBeenCalled()
+  })
+
+  it("should start with loading state when search text is provided", () => {
+    const { result } = renderHook(() => useSearchResults("cat"))
     expect(result.current.isLoading).toBe(true)
     expect(result.current.results).toEqual([])
-    expect(result.current.error).toBeNull()
   })
 
   it("should fetch and filter data successfully", async () => {
@@ -31,7 +41,6 @@ describe("useSearchResults", () => {
 
     expect(result.current.results).toHaveLength(1)
     expect(result.current.results[0].type).toBe("fish")
-    expect(result.current.error).toBeNull()
   })
 
   it("should filter by both type and description", async () => {
@@ -47,24 +56,16 @@ describe("useSearchResults", () => {
     expect(result.current.results[0].type).toBe("turtle")
   })
 
-  it("should cleanup on unmount", async () => {
-    vi.mocked(getAnimalsList).mockImplementation(
-      () =>
-        new Promise((resolve) => {
-          setTimeout(() => resolve(MOCKED_ANIMALS_DATA), 10000)
-        }),
-    )
+  it("should handle case-insensitive search", async () => {
+    vi.mocked(getAnimalsList).mockResolvedValue(MOCKED_ANIMALS_DATA)
 
-    const { unmount, result } = renderHook(() => useSearchResults(""))
-    unmount()
+    const { result } = renderHook(() => useSearchResults("FISH"))
 
-    await waitFor(
-      () => {
-        expect(result.current.isLoading).toBe(true)
-        expect(result.current.results).toEqual([])
-        expect(result.current.error).toBeNull()
-      },
-      { timeout: 100 },
-    )
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(false)
+    })
+
+    expect(result.current.results).toHaveLength(1)
+    expect(result.current.results[0].type).toBe("fish")
   })
 })

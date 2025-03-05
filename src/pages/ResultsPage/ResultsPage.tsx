@@ -4,19 +4,20 @@ import { SearchInput } from "@/components/SearchInput/SearchInput"
 import { useSearchInput } from "@/hooks/useSearchInput"
 import { Link, useParams } from "react-router-dom"
 import { useSearchResults } from "@/hooks/useSearchResults"
-import { SearchResultsList } from "@/components/ResultsList/ResultsList"
+import { ResultsList } from "@/components/ResultsList/ResultsList"
+import { Footer } from "@/components/Footer/Footer"
 import styles from "./styles.module.css"
 
 export const ResultsPage: FC = () => {
   const { searchText: routeSearchText } = useParams<{ searchText: string }>()
   const { searchText, handleClear, handleChange, handleSubmit } =
-    useSearchInput(routeSearchText || "")
-  const { results } = useSearchResults(routeSearchText || "")
-  console.log(results)
+    useSearchInput(routeSearchText)
+  const { results, isLoading } = useSearchResults(routeSearchText)
+
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       <Navbar>
-        <div className={styles.searchContainer}>
+        <div className={styles.searchInput}>
           <Link to={"/"}>
             <img src="./google-logo.svg" alt="Google" className={styles.logo} />
           </Link>
@@ -28,8 +29,14 @@ export const ResultsPage: FC = () => {
           />
         </div>
       </Navbar>
-
-      <SearchResultsList results={results} />
+      <div className={styles.resultsContainer}>
+        <ResultsList
+          results={results}
+          isLoading={isLoading}
+          searchText={routeSearchText}
+        />
+      </div>
+      <Footer />
     </div>
   )
 }

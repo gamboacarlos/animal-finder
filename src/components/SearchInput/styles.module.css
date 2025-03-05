@@ -2,11 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .searchBody {
   position: relative;
-  width: 100%;
+  min-width: 540px;
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+  }
 }
 
 .searchIcon {
