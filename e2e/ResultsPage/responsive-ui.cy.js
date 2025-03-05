@@ -1,9 +1,6 @@
 describe("Responsive Tests", () => {
-  const viewports = [
-    { name: "mobile", width: 500, height: 960 },
-    { name: "tablet", width: 810, height: 1080 },
-    { name: "desktop", width: 1280, height: 720 },
-  ]
+  const tablet = { width: 810, height: 1080 }
+  const mobile = { width: 500, height: 960 }
 
   it("should search and display results properly on desktop", () => {
     cy.visit("/")
@@ -19,7 +16,7 @@ describe("Responsive Tests", () => {
   })
 
   it("should search and display results properly on tablet", () => {
-    cy.viewport(viewports[1].width, viewports[1].height)
+    cy.viewport(tablet.width, tablet.height)
 
     cy.visit("/")
     cy.get('[data-testid="search-input"]').type("as")
@@ -34,7 +31,7 @@ describe("Responsive Tests", () => {
   })
 
   it("should search and display results properly on mobile", () => {
-    cy.viewport(viewports[0].width, viewports[0].height)
+    cy.viewport(mobile.width, mobile.height)
 
     cy.visit("/")
     cy.get('[data-testid="search-input"]').type("as")
